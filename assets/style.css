@@ -176,6 +176,28 @@ h2 {
 }
 .copy.ok { background: var(--ok); color: #fff; }
 .copy-all { width: 100%; margin-top: 12px; }
+.field-important {
+  background: color-mix(in srgb, var(--sun) 22%, var(--surface)); border: 2px solid var(--sun) !important;
+  border-radius: 14px; padding: 12px; margin-block: 8px 4px;
+}
+.field-important .field-label { color: var(--ink); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .76rem; }
+.field-important .field-value { font-size: 1.3rem; font-weight: 800; }
+.field-why { grid-column: 1 / -1; font-size: .84rem; color: var(--ink); opacity: .8; margin-top: 4px; }
+.fund-btn { width: 100%; margin-block: 8px 4px; }
+.pay-group { padding-block: 12px; border-bottom: 1px solid var(--line); }
+.pay-group h3, .pay-sub { margin: 4px 0 6px; font-size: 1rem; }
+.pay-sub { margin-top: 14px; }
+.pay-group p { margin: 0; color: var(--muted); font-size: .95rem; }
+.methods { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.methods li { background: var(--accent-soft); color: var(--ink); border-radius: 999px; padding: 6px 12px; font-size: .9rem; font-weight: 500; }
+
+/* ---------- clinic ---------- */
+.clinic { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 10px; }
+.clinic p { margin: 0; }
+.clinic-head { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; align-items: center; }
+.clinic-head b { display: block; font-size: 1.08rem; }
+.clinic-head span span { display: block; color: var(--muted); font-size: .9rem; }
+.clinic-head .link-ico { display: grid; place-items: center; }
 
 /* ---------- links ---------- */
 .links { display: grid; gap: 8px; }

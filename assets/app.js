@@ -80,6 +80,14 @@
   /* ---------- текст ---------- */
   $("story").innerHTML = "<h2>" + esc(S.story.title) + "</h2>" + S.story.paragraphs.map(function (p, i) { return '<p data-read="' + (i + 1) + '">' + esc(p) + "</p>"; }).join("");
 
+  /* ---------- клиника ---------- */
+  if (S.clinic) {
+    var k = S.clinic;
+    $("clinic").innerHTML = "<h2>" + esc(k.title) + '</h2><div class="clinic"><div class="clinic-head"><span class="link-ico">' + ICON.clinic + "</span><span><b>" + esc(k.name) + "</b><span>" + esc(k.place) + "</span></span></div>" +
+      k.paragraphs.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+      (k.url ? '<a class="btn btn-ghost" href="' + esc(k.url) + '" target="_blank" rel="noopener" data-ev="clinic_site">' + esc(k.button || "Сайт клиники") + "</a>" : "") + "</div>";
+  } else $("clinic-sec").hidden = true;
+
   /* ---------- карусели ---------- */
   function carousel(root, items, kind) {
     root.innerHTML = '<div class="track" tabindex="0" aria-label="' + (kind === "photo" ? "Фотографии" : "Документы") + '">' +
@@ -168,11 +176,22 @@
   function renderPay(i) {
     var p = S.payments[i];
     document.querySelectorAll(".tab").forEach(function (t, j) { t.setAttribute("aria-selected", j === i); });
-    $("pay").innerHTML = '<div class="pay" role="tabpanel">' + (p.note ? '<p class="pay-note">' + esc(p.note) + "</p>" : "") +
-      p.fields.map(function (f, j) {
-        return '<div class="field"><span class="field-label">' + esc(f.label) + '</span><span class="field-value">' + esc(f.value) + '</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button></div>';
-      }).join("") +
-      '<button class="btn btn-ghost copy-all" type="button" data-copy="all">Скопировать все реквизиты</button></div>';
+    var fieldHtml = function (f, j) {
+      if (f.important) return '<div class="field field-important"><span class="field-label">' + esc(f.label) + ' обязателен</span><span class="field-value">«' + esc(f.value) + '»</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button><span class="field-why">Пожалуйста, вставьте этот текст в поле «Сообщение получателю» при переводе</span></div>';
+      return '<div class="field"><span class="field-label">' + esc(f.label) + '</span><span class="field-value">' + esc(f.value) + '</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button></div>';
+    };
+    var html = '<div class="pay" role="tabpanel">' + (p.note ? '<p class="pay-note">' + esc(p.note) + "</p>" : "");
+    if (p.type === "fund") {
+      html += '<a class="btn btn-primary fund-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" data-ev="fund_open">' + esc(p.button || "Открыть сбор") + "</a>" +
+        (p.groups || []).map(function (g) {
+          return '<div class="pay-group"><h3>' + esc(g.title) + "</h3><p>" + esc(g.text) + "</p>" +
+            (g.items && g.items.length ? '<ul class="methods">' + g.items.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("") + "</ul>" : "") + "</div>";
+        }).join("") +
+        (p.fields && p.fields.length ? '<h3 class="pay-sub">Данные фонда</h3>' + p.fields.map(fieldHtml).join("") : "") + "</div>";
+    } else {
+      html += p.fields.map(fieldHtml).join("") + '<button class="btn btn-ghost copy-all" type="button" data-copy="all">Скопировать все реквизиты</button></div>';
+    }
+    $("pay").innerHTML = html;
   }
   $("tabs").innerHTML = S.payments.map(function (p, i) { return '<button class="tab" role="tab" type="button" data-tab="' + i + '">' + esc(p.tab) + "</button>"; }).join("");
   var payIdx = 0; renderPay(0);
