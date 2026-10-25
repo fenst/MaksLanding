@@ -266,3 +266,11 @@ footer .btn { width: 100%; }
   border-radius: 10px; padding: 6px 9px; max-width: 220px; pointer-events: none;
 }
 .debug b { color: var(--sun); font-weight: 700; display: block; }
+
+.company-link {
+  display: block; width: 100%; text-align: left; margin: -4px 0 12px; padding: 12px 14px; cursor: pointer;
+  background: var(--surface); border: 1px dashed var(--accent); border-radius: 14px; color: var(--ink); font-size: .95rem;
+}
+.company-link b { color: var(--accent); white-space: nowrap; }
+.steps { margin: 8px 0 0; padding-left: 22px; display: grid; gap: 6px; }
+.steps li { padding-left: 2px; }

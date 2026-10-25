@@ -175,7 +175,10 @@
   /* ---------- реквизиты ---------- */
   function renderPay(i) {
     var p = S.payments[i];
-    document.querySelectorAll(".tab").forEach(function (t, j) { t.setAttribute("aria-selected", j === i); });
+    document.querySelectorAll(".tab").forEach(function (t, j) {
+      t.setAttribute("aria-selected", j === i);
+      if (j === i) { var tb = $("tabs"); tb.scrollLeft = t.offsetLeft - tb.offsetLeft - 16; }
+    });
     var fieldHtml = function (f, j) {
       if (f.important) return '<div class="field field-important"><span class="field-label">' + esc(f.label) + ' обязателен</span><span class="field-value">«' + esc(f.value) + '»</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button><span class="field-why">Пожалуйста, вставьте этот текст в поле «Сообщение получателю» при переводе</span></div>';
       return '<div class="field"><span class="field-label">' + esc(f.label) + '</span><span class="field-value">' + esc(f.value) + '</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button></div>';
@@ -184,7 +187,8 @@
     if (p.type === "fund") {
       html += '<a class="btn btn-primary fund-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" data-ev="fund_open">' + esc(p.button || "Открыть сбор") + "</a>" +
         (p.groups || []).map(function (g) {
-          return '<div class="pay-group"><h3>' + esc(g.title) + "</h3><p>" + esc(g.text) + "</p>" +
+          return '<div class="pay-group"><h3>' + esc(g.title) + "</h3>" + (g.text ? "<p>" + esc(g.text) + "</p>" : "") +
+            (g.steps ? '<ol class="steps">' + g.steps.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("") + "</ol>" : "") +
             (g.items && g.items.length ? '<ul class="methods">' + g.items.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("") + "</ul>" : "") + "</div>";
         }).join("") +
         (p.fields && p.fields.length ? '<h3 class="pay-sub">Данные фонда</h3>' + p.fields.map(fieldHtml).join("") : "") + "</div>";
@@ -194,7 +198,17 @@
     $("pay").innerHTML = html;
   }
   $("tabs").innerHTML = S.payments.map(function (p, i) { return '<button class="tab" role="tab" type="button" data-tab="' + i + '">' + esc(p.tab) + "</button>"; }).join("");
-  var payIdx = 0; renderPay(0);
+  var payIdx = 0;
+  S.payments.forEach(function (p, i) { if (p.id && location.hash === "#" + p.id) payIdx = i; });
+  renderPay(payIdx);
+  var companyIdx = -1; S.payments.forEach(function (p, i) { if (p.id === "company") companyIdx = i; });
+  if (companyIdx >= 0) {
+    var cl = document.createElement("button"); cl.type = "button"; cl.className = "company-link";
+    cl.innerHTML = "Вы представляете компанию? <b>Оплата по счёту →</b>";
+    cl.onclick = function () { payIdx = companyIdx; renderPay(payIdx); track("company_link"); };
+    $("tabs").parentNode.insertBefore(cl, $("tabs"));
+  }
+  if (location.hash && payIdx > 0) setTimeout(function () { $("help").scrollIntoView(); }, 300);
   $("tabs").addEventListener("click", function (e) { var t = e.target.closest(".tab"); if (t) { payIdx = +t.dataset.tab; renderPay(payIdx); track("pay_tab_" + (payIdx + 1)); } });
 
   function toast(msg) {
