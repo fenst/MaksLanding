@@ -117,10 +117,10 @@ window.SITE = {
   ],
 
   // ---------- Ссылки ----------
-  // kind влияет на значок: telegram, instagram, clinic, fund, doctor, site
+  // kind влияет на значок: telegram, clinic, fund, doctor, site, placeholder (пустая рамка)
   links: [
     { kind: "telegram",  title: "Телеграм-канал Максима", sub: "Новости сбора каждую неделю", url: "https://t.me/" },
-    { kind: "instagram", title: "Инстаграм Максима", sub: "Фото и видео из жизни", url: "https://instagram.com/" },
+    { kind: "placeholder", title: "Инстаграм Максима", sub: "Фото и видео из жизни", url: "https://instagram.com/" },
     { kind: "clinic",    title: "IASO Children\u2019s Hospital", sub: "Клиника в Афинах, где пройдёт операция", url: "https://www.iaso.gr/en/" },
     { kind: "fund",      title: "Фонд «Анна Мария»", sub: "Страница сбора Максима в фонде", url: "https://bf-annamariya.ru/2829-gonchar-maksim.html" },
     { kind: "doctor",    title: "Доктор, который будет оперировать", sub: "Нейрохирург, профиль на сайте клиники", url: "https://example.com" }
@@ -144,7 +144,7 @@ window.SITE = {
   // Каждая вкладка — свой способ перевода. Каждое поле можно скопировать кнопкой.
   payments: [
     {
-      tab: "Карта Сбер",
+      tab: "На Сбер",
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2202 2092 9195 8717" },
@@ -153,7 +153,7 @@ window.SITE = {
       ]
     },
     {
-      tab: "Карта ВТБ",
+      tab: "На ВТБ",
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2200 2489 8209 1810" },
@@ -162,7 +162,7 @@ window.SITE = {
       ]
     },
     {
-      tab: "Карта Т-БАНК",
+      tab: "На Т-БАНК",
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2200 7012 5847 3005" },
@@ -171,7 +171,7 @@ window.SITE = {
       ]
     },
     {
-      tab: "Фонд «Анна Мария»",
+      tab: "Через фонд «Анна Мария»",
       id: "fund",
       type: "fund",
       note: "Сбор официально ведёт благотворительный фонд «Анна Мария». Фонд перечисляет деньги напрямую клинике и публикует отчёты.",
