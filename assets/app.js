@@ -90,13 +90,15 @@
   } else $("clinic-sec").hidden = true;
 
   /* ---------- карусели ---------- */
-  function carousel(root, items, kind) {
-    root.innerHTML = '<div class="track" tabindex="0" aria-label="' + (kind === "photo" ? "Фотографии" : "Документы") + '">' +
+  function carousel(root, items, kind, rows) {
+    rows = rows || 1;
+    var cols = Math.ceil(items.length / rows);
+    root.innerHTML = '<div class="track' + (rows > 1 ? " rows" + rows : "") + '" tabindex="0" aria-label="' + (kind === "photo" ? "Фотографии" : "Документы") + '">' +
       items.map(function (it, i) {
         return '<button class="slide" type="button" data-i="' + i + '" aria-label="Открыть ' + esc(it.alt || it.title) + '"><img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy">' +
           (it.title ? '<span class="slide-cap">' + esc(it.title) + "</span>" : "") + "</button>";
       }).join("") + "</div>" +
-      '<div class="wrap car-bar"><span class="counter"></span><span class="dots">' + items.map(function () { return "<i></i>"; }).join("") + '</span><span class="arrows"><button class="arrow prev" type="button" aria-label="Назад">' + ICON.arrowL + '</button><button class="arrow next" type="button" aria-label="Вперёд">' + ICON.arrowR + "</button></span></div>";
+      '<div class="wrap car-bar"><span class="counter"></span><span class="dots">' + new Array(cols + 1).join("<i></i>") + '</span><span class="arrows"><button class="arrow prev" type="button" aria-label="Назад">' + ICON.arrowL + '</button><button class="arrow next" type="button" aria-label="Вперёд">' + ICON.arrowR + "</button></span></div>";
     var track = root.querySelector(".track"), slides = track.children, dots = root.querySelectorAll(".dots i"), counter = root.querySelector(".counter");
     var prev = root.querySelector(".prev"), next = root.querySelector(".next"), maxSeen = 0;
     function current() {
@@ -107,19 +109,20 @@
     }
     function update() {
       var c = current();
-      counter.textContent = (c + 1) + " / " + items.length;
-      dots.forEach(function (d, i) { d.classList.toggle("on", i === c); });
+      var col = Math.floor(c / rows);
+      counter.textContent = rows > 1 ? items.length + " фото" : (c + 1) + " / " + items.length;
+      dots.forEach(function (d, i) { d.classList.toggle("on", i === col); });
       prev.disabled = track.scrollLeft < 4; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
       if (c > maxSeen) { maxSeen = c; track.dataset.seen = c; track_(kind + "_swipe", { seen: c + 1 }); if (c === items.length - 1) track_(kind + "_seen_all", null, true); }
     }
     var t; track.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(update, 80); }, { passive: true });
-    function go(dir) { var c = current() + dir; c = Math.max(0, Math.min(items.length - 1, c)); track.scrollTo({ left: slides[c].offsetLeft - slides[0].offsetLeft, behavior: "smooth" }); track_(kind + "_arrow"); }
+    function go(dir) { var c = current() - current() % rows + dir * rows; c = Math.max(0, Math.min(items.length - 1, c)); track.scrollTo({ left: slides[c].offsetLeft - slides[0].offsetLeft, behavior: "smooth" }); track_(kind + "_arrow"); }
     prev.onclick = function () { go(-1); }; next.onclick = function () { go(1); };
     track.addEventListener("click", function (e) { var s = e.target.closest(".slide"); if (s) openLightbox(items, +s.dataset.i, kind); });
     update();
   }
   var track_ = function (n, p, once) { track(n, p, once); };
-  carousel($("photos"), S.photos, "photo");
+  carousel($("photos"), S.photos, "photo", S.photoRows || 2);
   carousel($("docs"), S.documents, "doc");
 
   /* ---------- просмотр на весь экран ---------- */

@@ -131,6 +131,9 @@ h2 {
   border-radius: 16px; overflow: hidden; cursor: zoom-in; position: relative;
 }
 .slide img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.track.rows2 { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: 38%; gap: 8px; }
+.track.rows2 .slide { border-radius: 12px; }
+@media (min-width: 560px) { .track.rows2 { grid-auto-columns: 22%; } }
 .docs .slide { flex-basis: 62%; border: 1px solid var(--line); }
 .docs .slide img { aspect-ratio: 1 / 1.41; object-fit: cover; object-position: top; }
 .slide-cap { display: block; padding: 10px 12px; font-size: .9rem; font-weight: 600; text-align: left; }
