@@ -31,7 +31,8 @@
 Один раз нужно добавить данные FTP: **Settings → Secrets and variables → Actions → New repository secret**:
 - `FTP_SERVER`: адрес FTP-сервера из панели SpaceWeb (например `ftp.xxxxx.sweb.ru` или IP);
 - `FTP_USERNAME` и `FTP_PASSWORD`: логин и пароль FTP;
-- `FTP_DIR`: папка сайта на хостинге со слешем на конце, например `public_html/`.
+- `FTP_DIR` (необязательно): папка сайта со слешем на конце, например `public_html/`. Не нужен, если FTP-пользователь
+  сразу попадает в папку сайта: тогда файлы заливаются в корень FTP.
 
 Если заливка падает на подключении, во вкладке **Variables** создайте переменную `FTP_PROTOCOL` = `ftp`.
 Перезапустить заливку вручную: Actions → Deploy to SpaceWeb → Run workflow.

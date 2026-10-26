@@ -1,5 +1,5 @@
 # Заливает сайт на хостинг SpaceWeb (maks-go.ru) по FTP при каждом коммите в main.
-# Нужны секреты репозитория: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_DIR
+# Нужны секреты репозитория: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (FTP_DIR по желанию)
 # (Settings → Secrets and variables → Actions). Подробности в README.
 name: Deploy to SpaceWeb
 
@@ -24,7 +24,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_DIR }}
+          server-dir: ${{ secrets.FTP_DIR || './' }}
           protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
           exclude: |
             **/.git*
