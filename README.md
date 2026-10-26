@@ -24,5 +24,16 @@
 `ffmpeg -i input.mov -vf scale=-2:720 -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 96k -movflags +faststart video/intro.mp4`
 
 ## Публикация
-Это обычные файлы без сборки. Подходит любой статический хостинг: GitHub Pages, Netlify,
-или обычный хостинг с доменом. Просто загрузите всю папку.
+Сайт живёт на https://maks-go.ru (хостинг SpaceWeb). Код хранится здесь, на GitHub:
+каждый коммит в ветку main через пару минут сам заливается на хостинг по FTP
+(файл `.github/workflows/deploy-sweb.yml`, ход заливки виден во вкладке **Actions**).
+
+Один раз нужно добавить данные FTP: **Settings → Secrets and variables → Actions → New repository secret**:
+- `FTP_SERVER`: адрес FTP-сервера из панели SpaceWeb (например `ftp.xxxxx.sweb.ru` или IP);
+- `FTP_USERNAME` и `FTP_PASSWORD`: логин и пароль FTP;
+- `FTP_DIR`: папка сайта на хостинге со слешем на конце, например `public_html/`.
+
+Если заливка падает на подключении, во вкладке **Variables** создайте переменную `FTP_PROTOCOL` = `ftp`.
+Перезапустить заливку вручную: Actions → Deploy to SpaceWeb → Run workflow.
+
+Файлы `README.md`, `.nojekyll` и папка `.github` на хостинг не попадают.
