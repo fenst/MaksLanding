@@ -1,0 +1,34 @@
+# Заливает сайт на хостинг SpaceWeb (maks-go.ru) по FTP при каждом коммите в main.
+# Нужны секреты репозитория: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (FTP_DIR по желанию)
+# (Settings → Secrets and variables → Actions). Подробности в README.
+name: Deploy to SpaceWeb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-sweb
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIR || './' }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            .nojekyll
+            README.md
