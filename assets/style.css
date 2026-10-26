@@ -118,7 +118,7 @@ h2 {
 .story p { margin: 0 0 14px; font-size: 1.04rem; max-width: 62ch; }
 
 /* ---------- carousel ---------- */
-.carousel { position: relative; }
+.carousel { position: relative; max-width: 640px; margin: 0 auto; }
 .track {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
