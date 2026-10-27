@@ -124,14 +124,15 @@
       '<div class="wrap car-bar"><span class="counter"></span><span class="dots">' + new Array(cols + 1).join("<i></i>") + '</span><span class="arrows"><button class="arrow prev" type="button" aria-label="Назад">' + ICON.arrowL + '</button><button class="arrow next" type="button" aria-label="Вперёд">' + ICON.arrowR + "</button></span></div>";
     var track = root.querySelector(".track"), slides = track.children, dots = root.querySelectorAll(".dots i"), counter = root.querySelector(".counter");
     var prev = root.querySelector(".prev"), next = root.querySelector(".next"), maxSeen = 0;
-    function current() {
+    // первый видимый слайд; atEnd: в самом конце считать текущим последний (для счётчика)
+    function current(atEnd) {
       var x = track.scrollLeft, best = 0, bd = 1e9;
-      for (var i = 0; i < slides.length; i++) { var d = Math.abs(slides[i].offsetLeft - track.offsetLeft - parseFloat(getComputedStyle(track).paddingLeft) - x); if (d < bd) { bd = d; best = i; } }
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = slides.length - 1;
+      for (var i = 0; i < slides.length; i++) { var d = Math.abs(slides[i].offsetLeft - slides[0].offsetLeft - x); if (d < bd) { bd = d; best = i; } }
+      if (atEnd && track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = slides.length - 1;
       return best;
     }
     function update() {
-      var c = current();
+      var c = current(true);
       var col = Math.floor(c / rows);
       counter.textContent = rows > 1 ? items.length + " фото" : (c + 1) + " / " + items.length;
       dots.forEach(function (d, i) { d.classList.toggle("on", i === col); });
@@ -139,7 +140,7 @@
       if (c > maxSeen) { maxSeen = c; track.dataset.seen = c; track_(kind + "_swipe", { seen: c + 1 }); if (c === items.length - 1) track_(kind + "_seen_all", null, true); }
     }
     var t; track.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(update, 80); }, { passive: true });
-    function go(dir) { var c = current() - current() % rows + dir * rows; c = Math.max(0, Math.min(items.length - 1, c)); track.scrollTo({ left: slides[c].offsetLeft - slides[0].offsetLeft, behavior: "smooth" }); track_(kind + "_arrow"); }
+    function go(dir) { var c = current(); c = c - c % rows + dir * rows; c = Math.max(0, Math.min(items.length - 1, c)); track.scrollTo({ left: slides[c].offsetLeft - slides[0].offsetLeft, behavior: "smooth" }); track_(kind + "_arrow"); }
     prev.onclick = function () { go(-1); }; next.onclick = function () { go(1); };
     track.addEventListener("click", function (e) { var s = e.target.closest(".slide"); if (s) openLightbox(items, +s.dataset.i, kind); });
     update();
