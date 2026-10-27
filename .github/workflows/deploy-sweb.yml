@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check config.js
+        run: node -e "global.window={}; require('./config.js'); if (!window.SITE) process.exit(1)"
+
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
