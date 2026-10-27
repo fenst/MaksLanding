@@ -1,6 +1,10 @@
 /* Страница собирается из config.js. Здесь ничего менять не нужно. */
 (function () {
   var S = window.SITE;
+  if (!S) {
+    document.body.insertAdjacentHTML("afterbegin", '<p style="padding:24px;font:16px sans-serif;color:#c8432f">Ошибка в файле config.js: проверьте запятые и кавычки в последней правке.</p>');
+    return;
+  }
   var $ = function (id) { return document.getElementById(id); };
   var fmt = new Intl.NumberFormat("ru-RU");
   var money = function (n) { return fmt.format(n) + " " + S.currency; };
@@ -81,13 +85,29 @@
   /* ---------- текст ---------- */
   $("story").innerHTML = "<h2>" + esc(S.story.title) + "</h2>" + S.story.paragraphs.map(function (p, i) { return '<p data-read="' + (i + 1) + '">' + esc(p) + "</p>"; }).join("");
 
+  function btnRow(list, ev) {
+    if (!list.length) return "";
+    return '<div class="btn-row">' + list.map(function (b, i) {
+      return '<a class="btn btn-ghost" href="' + esc(b.url) + '" data-ev="' + ev + "_link_" + (i + 1) + '">' + esc(b.title) + "</a>";
+    }).join("") + "</div>";
+  }
+
   /* ---------- клиника ---------- */
   if (S.clinic) {
     var k = S.clinic;
     $("clinic").innerHTML = "<h2>" + esc(k.title) + '</h2><div class="clinic"><div class="clinic-head"><span class="link-ico">' + ICON.clinic + "</span><span><b>" + esc(k.name) + "</b><span>" + esc(k.place) + "</span></span></div>" +
       k.paragraphs.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
-      (k.url ? '<a class="btn btn-ghost" href="' + esc(k.url) + '" target="_blank" rel="noopener" data-ev="clinic_site">' + esc(k.button || "Сайт клиники") + "</a>" : "") + "</div>";
+      btnRow(k.buttons || (k.url ? [{ title: k.button || "Сайт клиники", url: k.url }] : []), "clinic") + "</div>";
   } else $("clinic-sec").hidden = true;
+
+  /* ---------- доктор ---------- */
+  if (S.doctor) {
+    var dr = S.doctor;
+    $("doctor").innerHTML = "<h2>" + esc(dr.title) + '</h2><div class="doctor">' +
+      (dr.photo ? '<img class="doctor-photo" src="' + esc(dr.photo) + '" alt="' + esc(dr.name) + '" loading="lazy">' : "") +
+      '<div class="doctor-body"><b class="doctor-name">' + esc(dr.name) + "</b>" + (dr.role ? '<span class="doctor-role">' + esc(dr.role) + "</span>" : "") +
+      "<p>" + esc(dr.description) + "</p></div>" + btnRow(dr.links || [], "doctor") + "</div>";
+  } else $("doctor-sec").hidden = true;
 
   /* ---------- карусели ---------- */
   function carousel(root, items, kind, rows) {
@@ -259,6 +279,16 @@
     if (navigator.share) navigator.share(data).then(function () { track("share_done"); }, function () {});
     else copyText(location.href, null, function () { toast("Ссылка скопирована, отправьте её друзьям"); });
   });
+
+  /* ---------- все внешние ссылки открываются в новом окне ---------- */
+  function externalLinks() {
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      if (a.hostname && a.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener"; }
+    });
+  }
+  externalLinks();
+  $("pay").addEventListener("click", function () { setTimeout(externalLinks, 0); });
+  $("tabs").addEventListener("click", function () { setTimeout(externalLinks, 0); });
 
   /* ---------- клики по кнопкам и ссылкам ---------- */
   document.addEventListener("click", function (e) { var a = e.target.closest("[data-ev]"); if (a) track(a.dataset.ev); });

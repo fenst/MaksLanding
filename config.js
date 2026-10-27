@@ -90,8 +90,24 @@ window.SITE = {
       "С 2021 года больница официально является референс-центром по малоинвазивному хирургическому лечению детей с ДЦП.",
       "У клиники есть международная аккредитация качества помощи иностранным пациентам."
     ],
-    url: "https://www.iaso.gr/en/",
-    button: "Сайт клиники"
+    buttons: [
+      { title: "Сайт клиники", url: "https://www.iaso.gr/en/" },
+      { title: "Место на Google Maps", url: "https://www.google.com/maps/search/?api=1&query=IASO+Children%27s+Hospital+Marousi+Athens" }
+    ]
+  },
+
+  // ---------- Доктор ----------
+  // photo: квадратное фото (например 800×800) в папке photos
+  doctor: {
+    title: "Кто проводит операцию",
+    photo: "photos/doctor.jpg",
+    name: "Имя и фамилия доктора",
+    role: "Нейрохирург, IASO Children\u2019s Hospital",
+    description: "Короткое описание на три строки: опыт, сколько операций SDR и SPML провёл, чем известен. Здесь будет текст о докторе.",
+    links: [
+      { title: "Страница доктора", url: "https://example.com" },
+      { title: "Страница метода", url: "https://example.com" }
+    ]
   },
 
   // ---------- Фотографии Максима ----------
