@@ -116,11 +116,16 @@ window.SITE = {
   // ---------- Документы ----------
   // Картинки (jpg/png) документов. Можно добавить ссылку на PDF в поле pdf.
   documents: [
-    { src: "docs/01.jpg", title: "Выписка невролога", pdf: "" },
-    { src: "docs/02.jpg", title: "Заключение ортопеда", pdf: "" },
-    { src: "docs/03.jpg", title: "Счёт клиники", pdf: "" },
-    { src: "docs/04.jpg", title: "Калькуляция расходов", pdf: "" },
-    { src: "docs/05.jpg", title: "Письмо фонда", pdf: "" }
+    { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB операции", pdf: "" },
+    { src: "docs/01.jpg", title: "Заключение ортопеда", pdf: "" },
+    { src: "docs/02.jpg", title: "Счёт клиники", pdf: "" },
+    { src: "docs/03.jpg", title: "Калькуляция расходов", pdf: "" },
+    { src: "docs/04.jpg", title: "Письмо фонда", pdf: "" }
+    { src: "docs/05.jpg", title: "Заключение ортопеда", pdf: "" },
+    { src: "docs/maksgoru3reabilitationMGCR.png", title: "Реабилитация в МГЦР", pdf: "" },
+    { src: "docs/maksgoru3reabilitationABM.png", title: "Реабилитация ABM", pdf: "" },
+    { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж", pdf: "" }
+    { src: "docs/maksgoru3reabilitationswimming.png", title: "Реабилитация плавание", pdf: "" }
   ],
 
   // ---------- Видео ----------
@@ -135,7 +140,7 @@ window.SITE = {
   // kind влияет на значок: telegram, clinic, fund, doctor, site, placeholder (пустая рамка)
   links: [
     { kind: "telegram",  title: "Телеграм-канал Максима", sub: "Новости сбора каждую неделю", url: "https://t.me/" },
-    { kind: "placeholder", title: "Инстаграм Максима", sub: "Фото и видео из жизни", url: "https://instagram.com/" },
+    { kind: "placeholder", title: "Инстаграм Максима maksim-letim", sub: "Фото и видео из жизни", url: "https://instagram.com/" },
     { kind: "clinic",    title: "IASO Children\u2019s Hospital", sub: "Клиника в Афинах, где пройдёт операция", url: "https://www.iaso.gr/en/" },
     { kind: "fund",      title: "Фонд «Анна Мария»", sub: "Страница сбора Максима в фонде", url: "https://bf-annamariya.ru/2829-gonchar-maksim.html" },
     { kind: "doctor",    title: "Доктор, который будет оперировать", sub: "Нейрохирург, профиль на сайте клиники", url: "https://example.com" }
@@ -163,7 +168,7 @@ window.SITE = {
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2202 2092 9195 8717" },
-        { label: "Получатель", value: "Гончар Мария Викторовна" },
+        { label: "Получатель", value: "Гончар Максим Даниилович" },
         { label: "Комментарий к переводу", value: "На операцию", important: true }
       ]
     },
@@ -172,7 +177,7 @@ window.SITE = {
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2200 2489 8209 1810" },
-        { label: "Получатель", value: "Гончар Мария Викторовна" },
+        { label: "Получатель", value: "Гончар Максим Даниилович" },
         { label: "Комментарий к переводу", value: "На операцию", important: true }
       ]
     },
@@ -181,7 +186,7 @@ window.SITE = {
       note: "Перевод по номеру карты, получатель: мама Максима.",
       fields: [
         { label: "Номер карты", value: "2200 7012 5847 3005" },
-        { label: "Получатель", value: "Гончар Мария Викторовна" },
+        { label: "Получатель", value: "Гончар Максим Даниилович" },
         { label: "Комментарий к переводу", value: "На операцию", important: true }
       ]
     },
