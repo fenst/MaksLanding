@@ -290,3 +290,4 @@ footer .btn { width: 100%; }
 .doctor-body p { margin: 6px 0 0; font-size: .95rem; }
 .doctor .btn-row { grid-column: 1 / -1; }
 @media (max-width: 360px) { .doctor { grid-template-columns: 1fr; } }
+.story-block + .story-block { margin-top: 18px; }

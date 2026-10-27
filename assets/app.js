@@ -83,7 +83,10 @@
   $("updated").textContent = "Суммы обновлены " + new Date(S.updated).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
 
   /* ---------- текст ---------- */
-  $("story").innerHTML = "<h2>" + esc(S.story.title) + "</h2>" + S.story.paragraphs.map(function (p, i) { return '<p data-read="' + (i + 1) + '">' + esc(p) + "</p>"; }).join("");
+  var stories = S.stories || (S.story ? [S.story] : []), pn = 0;
+  $("story").innerHTML = stories.map(function (st) {
+    return '<div class="story-block"><h2>' + esc(st.title) + "</h2>" + st.paragraphs.map(function (p) { pn++; return '<p data-read="' + pn + '">' + esc(p) + "</p>"; }).join("") + "</div>";
+  }).join("");
 
   function btnRow(list, ev) {
     if (!list.length) return "";
@@ -228,7 +231,7 @@
   var companyIdx = -1; S.payments.forEach(function (p, i) { if (p.id === "company") companyIdx = i; });
   if (companyIdx >= 0) {
     var cl = document.createElement("button"); cl.type = "button"; cl.className = "company-link";
-    cl.innerHTML = "Вы представляете компанию? <b>Оплата по счёту →</b>";
+    cl.innerHTML = esc(S.companyLink || "Вы представляете компанию? Оплата по счёту") + " <b>→</b>";
     cl.onclick = function () { payIdx = companyIdx; renderPay(payIdx); track("company_link"); };
     $("tabs").parentNode.insertBefore(cl, $("tabs"));
   }
