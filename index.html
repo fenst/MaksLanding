@@ -90,7 +90,10 @@
 
 <div class="sticky" id="sticky"><a class="btn btn-primary" href="#help" data-ev="cta_sticky">Помочь Максиму</a></div>
 
-<script src="config.js"></script>
-<script src="assets/app.js"></script>
+<!-- Файлы грузятся с меткой времени, чтобы браузер всегда брал свежую версию -->
+<script>
+  var v = Date.now();
+  document.write('<script src="config.js?v=' + v + '"><\/script><script src="assets/app.js?v=' + v + '"><\/script>');
+</script>
 </body>
 </html>

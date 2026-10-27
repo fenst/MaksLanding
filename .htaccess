@@ -1,0 +1,6 @@
+# Браузер каждый раз проверяет, не изменились ли страница, стили и скрипты
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js|css)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
