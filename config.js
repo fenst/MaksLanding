@@ -120,11 +120,11 @@ window.SITE = {
     { src: "docs/01.jpg", title: "Заключение ортопеда", pdf: "" },
     { src: "docs/02.jpg", title: "Счёт клиники", pdf: "" },
     { src: "docs/03.jpg", title: "Калькуляция расходов", pdf: "" },
-    { src: "docs/04.jpg", title: "Письмо фонда", pdf: "" }
+    { src: "docs/04.jpg", title: "Письмо фонда", pdf: "" },
     { src: "docs/05.jpg", title: "Заключение ортопеда", pdf: "" },
     { src: "docs/maksgoru3reabilitationMGCR.png", title: "Реабилитация в МГЦР", pdf: "" },
     { src: "docs/maksgoru3reabilitationABM.png", title: "Реабилитация ABM", pdf: "" },
-    { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж", pdf: "" }
+    { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж", pdf: "" },
     { src: "docs/maksgoru3reabilitationswimming.png", title: "Реабилитация плавание", pdf: "" }
   ],
 
