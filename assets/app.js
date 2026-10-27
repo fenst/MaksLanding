@@ -207,7 +207,7 @@
       if (j === i) { var tb = $("tabs"); tb.scrollLeft = t.offsetLeft - tb.offsetLeft - 16; }
     });
     var fieldHtml = function (f, j) {
-      if (f.important) return '<div class="field field-important"><span class="field-label">' + esc(f.label) + ' обязателен</span><span class="field-value">«' + esc(f.value) + '»</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button><span class="field-why">Пожалуйста, вставьте этот текст в поле «Сообщение получателю» при переводе</span></div>';
+      if (f.important) return '<div class="field field-important"><span class="field-label"><span class="warn" aria-hidden="true">❗</span>' + esc(f.label) + '</span><span class="field-value">«' + esc(f.value) + '»</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button></div>';
       return '<div class="field"><span class="field-label">' + esc(f.label) + '</span><span class="field-value">' + esc(f.value) + '</span><button class="copy" type="button" data-copy="' + j + '">Скопировать</button></div>';
     };
     var html = '<div class="pay" role="tabpanel">' + (p.note ? '<p class="pay-note">' + esc(p.note) + "</p>" : "");
@@ -255,7 +255,11 @@
   $("pay").addEventListener("click", function (e) {
     var b = e.target.closest("[data-copy]"); if (!b) return;
     var p = S.payments[payIdx], k = b.dataset.copy;
-    var text = k === "all" ? p.fields.map(function (f) { return f.label + ": " + f.value; }).join("\n") : p.fields[+k].value;
+    var text = k === "all"
+      ? [].concat(p.copyAll && p.copyAll.header ? [p.copyAll.header, ""] : [],
+          p.fields.map(function (f) { return f.label + ": " + f.value; }),
+          p.copyAll && p.copyAll.footer ? [""].concat(p.copyAll.footer) : []).join("\n")
+      : p.fields[+k].value;
     copyText(text, b);
     track("copy_" + (payIdx + 1) + "_" + (k === "all" ? "all" : p.fields[+k].label), null);
     track("copy_any", null, true);

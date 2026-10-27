@@ -179,13 +179,9 @@ h2 {
 }
 .copy.ok { background: var(--ok); color: #fff; }
 .copy-all { width: 100%; margin-top: 12px; }
-.field-important {
-  background: color-mix(in srgb, var(--sun) 22%, var(--surface)); border: 2px solid var(--sun) !important;
-  border-radius: 14px; padding: 12px; margin-block: 8px 4px;
-}
-.field-important .field-label { color: var(--ink); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .76rem; }
-.field-important .field-value { font-size: 1.3rem; font-weight: 800; }
-.field-why { grid-column: 1 / -1; font-size: .84rem; color: var(--ink); opacity: .8; margin-top: 4px; }
+.field-important .field-label { color: var(--urgent); font-weight: 700; font-size: .86rem; }
+.field-important .field-value { color: var(--ink); font-weight: 800; }
+.warn { margin-right: 4px; }
 .fund-btn { width: 100%; margin-block: 8px 4px; }
 .pay-group { padding-block: 12px; border-bottom: 1px solid var(--line); }
 .pay-group h3, .pay-sub { margin: 4px 0 6px; font-size: 1rem; }
