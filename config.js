@@ -136,11 +136,11 @@ window.SITE = {
   // Картинки (jpg/png) документов. Можно добавить ссылку на PDF в поле pdf.
   documents: [
     { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB операции", pdf: "" },
-    { src: "docs/01.jpg", title: "Заключение ортопеда", pdf: "" },
-    { src: "docs/02.jpg", title: "Счёт клиники", pdf: "" },
-    { src: "docs/03.jpg", title: "Калькуляция расходов", pdf: "" },
-    { src: "docs/04.jpg", title: "Письмо фонда", pdf: "" },
-    { src: "docs/05.jpg", title: "Заключение ортопеда", pdf: "" },
+    { src: "docs/maksgoru0ortopedpriorova.png", title: "Заключение ортопеда из НМИЦ Приорова", pdf: "" },
+    { src: "docs/maksgoru0ortopedfilizhanko.png", title: "Заключение ортопеда Филижанко Т.В.", pdf: "" },
+    { src: "docs/maksgoru0ortopedturner.png", title: "Заключение ортопеда из НМИЦ Турнера ", pdf: "" },
+    { src: "docs/maksgoru0ortopedRDKB.png", title: "Заключение ортопеда из РНИМУ Пирогова", pdf: "" },
+    { src: "docs/maksgoru0dgp.png", title: "Заключение комиссии из ДГП ", pdf: "" },
     { src: "docs/maksgoru3reabilitationMGCR.png", title: "Реабилитация в МГЦР", pdf: "" },
     { src: "docs/maksgoru3reabilitationABM.png", title: "Реабилитация ABM", pdf: "" },
     { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж", pdf: "" },
