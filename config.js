@@ -13,7 +13,7 @@ window.SITE = {
   age: 9,
   diagnosis: "ДЦП, GMFCS 3",
   headline: "Помогите Максиму сделать шаг к самостоятельной ходьбе",
-  heroPhoto: "photos/hero.jpg",
+  heroPhoto: "photos/maintest1.jpg",
   heroAlt: "Максим с мамой, папой и сестрой",
   currency: "₽",
   updated: "2026-10-27",           // дата последнего обновления сумм
