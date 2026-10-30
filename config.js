@@ -133,18 +133,20 @@ window.SITE = {
   ],
 
   // ---------- Документы ----------
-  // Картинки (jpg/png) документов. Можно добавить ссылку на PDF в поле pdf.
+  // Картинки (jpg/png) документов.
+  // docRows: в сколько строк показывать документы (1 или 2)
+  docRows: 2,
   documents: [
-    { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB операции", pdf: "" },
-    { src: "docs/maksgoru0ortopedpriorova.png", title: "Заключение ортопеда из НМИЦ Приорова", pdf: "" },
-    { src: "docs/maksgoru0ortopedfilizhanko.png", title: "Заключение ортопеда Филижанко Т.В.", pdf: "" },
-    { src: "docs/maksgoru0ortopedturner.png", title: "Заключение ортопеда из НМИЦ Турнера ", pdf: "" },
-    { src: "docs/maksgoru0ortopedRDKB.png", title: "Заключение ортопеда из РНИМУ Пирогова", pdf: "" },
-    { src: "docs/maksgoru0dgp.png", title: "Заключение комиссии из ДГП ", pdf: "" },
-    { src: "docs/maksgoru3reabilitationMGCR.png", title: "Реабилитация в МГЦР", pdf: "" },
-    { src: "docs/maksgoru3reabilitationABM.png", title: "Реабилитация ABM", pdf: "" },
-    { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж", pdf: "" },
-    { src: "docs/maksgoru3reabilitationswimming.png", title: "Реабилитация плавание", pdf: "" }
+    { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB операции" },
+    { src: "docs/maksgoru0ortopedpriorova.png", title: "Заключение ортопеда из НМИЦ Приорова" },
+    { src: "docs/maksgoru0ortopedfilizhanko.png", title: "Заключение ортопеда Филижанко Т.В." },
+    { src: "docs/maksgoru0ortopedturner.png", title: "Заключение ортопеда из НМИЦ Турнера " },
+    { src: "docs/maksgoru0ortopedRDKB.png", title: "Заключение ортопеда из РНИМУ Пирогова" },
+    { src: "docs/maksgoru0dgp.png", title: "Заключение комиссии из ДГП " },
+    { src: "docs/maksgoru3reabilitationMGCR.png", title: "Реабилитация в МГЦР" },
+    { src: "docs/maksgoru3reabilitationABM.png", title: "Реабилитация ABM" },
+    { src: "docs/maksgoru3reabilitationmassage.png", title: "Реабилитация массаж" },
+    { src: "docs/maksgoru3reabilitationswimming.png", title: "Реабилитация плавание" }
   ],
 
   // ---------- Видео ----------

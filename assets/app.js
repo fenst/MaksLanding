@@ -134,7 +134,7 @@
     function update() {
       var c = current(true);
       var col = Math.floor(c / rows);
-      counter.textContent = rows > 1 ? items.length + " фото" : (c + 1) + " / " + items.length;
+      counter.textContent = rows > 1 ? items.length + " " + (kind === "photo" ? "фото" : plural(items.length, "документ", "документа", "документов")) : (c + 1) + " / " + items.length;
       dots.forEach(function (d, i) { d.classList.toggle("on", i === col); });
       prev.disabled = track.scrollLeft < 4; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
       if (c > maxSeen) { maxSeen = c; track.dataset.seen = c; track_(kind + "_swipe", { seen: c + 1 }); if (c === items.length - 1) track_(kind + "_seen_all", null, true); }
@@ -147,7 +147,7 @@
   }
   var track_ = function (n, p, once) { track(n, p, once); };
   carousel($("photos"), S.photos, "photo", S.photoRows || 2);
-  carousel($("docs"), S.documents, "doc");
+  carousel($("docs"), S.documents, "doc", S.docRows || 2);
 
   /* ---------- просмотр на весь экран ---------- */
   var lb = null;
@@ -163,7 +163,7 @@
     function upd() {
       var i = idx(), it = items[i];
       cnt.textContent = (i + 1) + " / " + items.length;
-      cap.innerHTML = it.pdf ? '<a href="' + esc(it.pdf) + '" target="_blank" rel="noopener" data-ev="doc_pdf">Открыть PDF</a>' : esc(it.title || it.alt || "");
+      cap.textContent = it.title || it.alt || "";
     }
     requestAnimationFrame(function () { tr.scrollLeft = start * tr.clientWidth; upd(); });
     var t; tr.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(function () { upd(); track(kind + "_lightbox_swipe"); }, 100); }, { passive: true });

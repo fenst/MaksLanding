@@ -133,6 +133,8 @@ h2 {
 .slide img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 .track.rows2 { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: 38%; gap: 8px; }
 .track.rows2 .slide { border-radius: 12px; }
+.docs .track.rows2 .slide img { aspect-ratio: 4 / 5; }
+.docs .track.rows2 .slide-cap { font-size: .8rem; line-height: 1.3; padding: 0 9px; border-block: 7px solid transparent; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 @media (min-width: 560px) { .track.rows2 { grid-auto-columns: 22%; } }
 .docs .slide { flex-basis: 62%; border: 1px solid var(--line); }
 .docs .slide img { aspect-ratio: 1 / 1.41; object-fit: cover; object-position: top; }
