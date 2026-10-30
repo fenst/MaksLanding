@@ -137,7 +137,7 @@ window.SITE = {
   // docRows: в сколько строк показывать документы (1 или 2)
   docRows: 2,
   documents: [
-    { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB операции" },
+    { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB + SPML операции" },
     { src: "docs/maksgoru0nevrologbobylova.png", title: "Заключение невролога Бобыловой М.Ю." },
     { src: "docs/maksgoru0ortopedpriorova.png", title: "Заключение ортопеда из НМИЦ Приорова" },
     { src: "docs/maksgoru0ortopedfilizhanko.png", title: "Заключение ортопеда Филижанко Т.В." },
