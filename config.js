@@ -27,7 +27,7 @@ window.SITE = {
   // priority: 1 — самая срочная. raised — сколько уже собрано.
   goals: [
     {
-      title: "Операция SDR и SPML",
+      title: "Операция SPML + SLOB",
       note: "Операция в клинике в Греции в начале мая, но оплатить надо в феврале",
       target: 4750000,
       raised: 18400,
@@ -138,6 +138,7 @@ window.SITE = {
   docRows: 2,
   documents: [
     { src: "docs/maksgoru1SLOBOperation.png", title: "Стоимость SLOB + SPML операции" },
+    { src: "docs/maksgoru1SLOBOperationru.png", title: "Стоимость SLOB + SPML операции" },
     { src: "docs/maksgoru0nevrologbobylova.png", title: "Заключение невролога Бобыловой М.Ю." },
     { src: "docs/maksgoru0ortopedpriorova.png", title: "Заключение ортопеда из НМИЦ Приорова" },
     { src: "docs/maksgoru0ortopedfilizhanko.png", title: "Заключение ортопеда Филижанко Т.В." },
